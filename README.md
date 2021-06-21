@@ -30,7 +30,7 @@ Stored as secrets or env vars, doesn't matter. But also please don't put your AW
     - Function ARN - `arn:aws:lambda:us-west-2:123456789012:function:my-function`  
     - Partial ARN - `123456789012:function:my-function`
  
- When function name is not specified, a layer is created containing contents of the lambda directory (if specified, else current working directory) and the requirements.
+    When function name is not specified, a layer is created containing contents of the lambda directory (if specified, else current working directory) and the requirements.
     
 - `lambda_directory`
     The directory with the lambda code
