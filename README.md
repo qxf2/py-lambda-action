@@ -29,10 +29,16 @@ Stored as secrets or env vars, doesn't matter. But also please don't put your AW
     - Function name - `my-function`  
     - Function ARN - `arn:aws:lambda:us-west-2:123456789012:function:my-function`  
     - Partial ARN - `123456789012:function:my-function`
+ 
+    When function name is not specified, a layer is created containing contents of the lambda directory (if specified, else current working directory) and the requirements.
+    
 - `lambda_directory`
     The directory with the lambda code
 - `requirements_txt`
     The name/path for the `requirements.txt` file. Defaults to `requirements.txt`.
+
+### Workflow diagram
+![Workflow diagram](https://github.com/qxf2/py-lambda-action/blob/1a2217d0fccf126183f927fa0ddd1573c60a564d/py-lambda-action_workflow.png)
 
 __Implementation__
 1. I added a `lambda_directory` input argument to `action.yml`. 

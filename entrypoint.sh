@@ -4,6 +4,11 @@ install_zip_dependencies(){
 	echo "Installing and zipping dependencies..."
 	mkdir python
 	pip install --target=python -r "${INPUT_REQUIREMENTS_TXT}"
+	if [ -z "${INPUT_LAMBDA_FUNCTION_NAME}" ]
+	then
+		cp -R "${INPUT_LAMBDA_DIRECTORY}"/* ./python
+		rm -rf ./python/.git*
+	fi
 	zip -r dependencies.zip ./python
 }
 
@@ -30,8 +35,7 @@ update_function_layers(){
 deploy_lambda_function(){
 	install_zip_dependencies
 	publish_dependencies_as_layer
-	publish_function_code
-	update_function_layers
+	[ ! -z "${INPUT_LAMBDA_FUNCTION_NAME}" ] && publish_function_code && update_function_layers
 }
 
 deploy_lambda_function
